@@ -35,7 +35,6 @@ public enum Signal {
 		}
 		else {
 			throw new ExceptionLogicMalformedSignal(c, "Invalid character!");
-			return ExceptionLogicMalformedSignal.getMsg();
 		}
 	}
 	//public static List<Signal> fromString(String inps) 
@@ -45,17 +44,22 @@ public enum Signal {
 		//as the concrete structure when returning something of the interface type List.
 	public static List<Signal> fromString(String inps){
         List<Signal> values = new LinkedList<Signal>();
-        if(inps.equals("1"))
+        if(inps.equals("1")) {
         	values.add(HI);
-        else if(inps.equals("0"))
+        }
+        else if(inps.equals("0")) {
         	values.add(LO);
-        else if(inps.equals("X"))
+        }
+        else if(inps.equals("X")) {
             values.add(X);
-        else if(inps.equals("x"))
+        }
+        else if(inps.equals("x")) {
             values.add(X);
-        else 
+        }
+        else {
         	throw new ExceptionLogicMalformedSignal(inps.charAt(0), "Invalid character!");
-			return ExceptionLogicMalformedSignal.getMsg();
+        }
+		return values;
 	}
 	//@Override public String toString() HI returns "1". 
 		//LO returns "0". X returns "X".

@@ -1,5 +1,4 @@
-
-public class ExceptionLogicMalformedSignal {
+public class ExceptionLogicMalformedSignal extends RuntimeException {
 //Fields
 	private char bad;
 	private String msg;
