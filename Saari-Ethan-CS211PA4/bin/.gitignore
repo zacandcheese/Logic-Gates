@@ -2,8 +2,9 @@
 /Contact.class
 /Gate.class
 /GateAnd.class
+/GateNot.class
 /Logic.class
 /LogicGates.class
 /Signal.class
 /Wire.class
-/GateNot.class
+/ExceptionLogicMalformedSignal.class
