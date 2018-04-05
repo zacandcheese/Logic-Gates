@@ -18,7 +18,12 @@ public class Contact implements Logic {
 		//When the two wires (in, out) have different names, you must show the two wire names,
 		//and parenthesize the one that is inside the circuit. Then, include a colon and the current signal value. 
 	@Override public String toString() {
-		return null;
+		if (in.getName().equals(out.getName())){
+			return String.format("%s:%s", in.getName(), in.getSignal());
+		}
+		else{
+			return String.format(inbound ? "%s(%s):%s" : "(%s)%s:%s", in.getName(), out.getName(), out.getSignal());
+	    }
 	}
 	//@Override public boolean equals(Object o) equality check that the in and out wires, 
 		//as well as inbound, are all equal between the two objects. 
@@ -32,6 +37,7 @@ public class Contact implements Logic {
 		}
 		return false;
 	}
+	
 	@Override
 	public void feed(List<Signal> inSignals) {
 		// TODO Auto-generated method stub
@@ -67,6 +73,7 @@ public class Contact implements Logic {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 //Getters and Setters
 	//Gets the in
 	public Wire getIn() {
