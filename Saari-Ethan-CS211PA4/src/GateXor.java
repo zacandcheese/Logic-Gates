@@ -1,9 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
-public class GateNot extends Gate{
+public class GateXor extends Gate{
 	
-	public GateNot(Wire inputs, Wire output) {
-		super("NOT",one(inputs),output);
+	public GateXor(List<Wire> inputs, Wire output) {
+		super("XOR", inputs,output);
 	}
 	// Helper method to create an ArrayList of one thing so that Java's // stupid "super() must be first line" rule can be honored 
 	public static <T> ArrayList<T> one(T x){  
@@ -11,11 +11,26 @@ public class GateNot extends Gate{
 		a.add(x);  
 		return a; 
 	}
+	//HI if exactly one input is high; LO otherwise
 	@Override public boolean propagate() {
 		boolean value = true;
-		Wire newWire = getInputs().get(0);
-		Signal signal = newWire.getSignal();
-		signal = signal.invert();
+		boolean flag = false;
+		int counter = 0;
+		Signal signal = Signal.X;
+		for(Wire w: getInputs()) {
+			if(w.getSignal() == Signal.HI) {
+				flag = true;
+				counter++;
+			}
+			else continue;
+		}
+		if(flag && counter==1) {
+			signal = Signal.HI;
+			//meaning one was negative
+		}
+		else signal = Signal.LO;
+		
+		//Checks to see if changed signal
 		if (getOutput().getSignal().equals(signal)) {
 			value = false;
 		}

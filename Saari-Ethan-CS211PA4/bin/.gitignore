@@ -9,3 +9,8 @@
 /Wire.class
 /ExceptionLogicMalformedSignal.class
 /ExceptionLogicParameters.class
+/GateOr.class
+/GateXor.class
+/GateNand.class
+/GateNor.class
+/Circuit.class
