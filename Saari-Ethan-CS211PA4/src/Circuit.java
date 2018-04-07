@@ -244,5 +244,40 @@ public class Circuit implements Logic{
 		return read().toString();
 	}
 	//Getters and Setters
-	
+	public void setComponents(List<Logic> components) {
+		this.components = components;
+	}
+	public List<Logic> getComponents(){
+		return components;
+	}
+	public void setInputs(List<Contact> inputs) {
+		this.inputs = inputs;
+	}
+	public List<Contact> getInputs(){
+		return inputs;
+	}
+	public void setOutputs(List<Contact> outputs) {
+		this.outputs = outputs;
+	}
+	public List<Contact> getOutputs(){
+		return outputs;
+	}
+	public void setInnerWires(List<Wire> innerWires) {
+		this.innerWires = innerWires;
+	}
+	public List<Wire> getInnerWires(){
+		return innerWires;
+	}
+	public void setImportables(List<String> importables) {
+		 this.importables = importables;
+	}
+	public List<String> getImportables(){
+		return importables;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
 }
