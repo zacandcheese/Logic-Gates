@@ -77,7 +77,7 @@ public class Circuit implements Logic{
 				inputs.add(new Contact(w,w,true));
 			}
 			//right
-			String[] righttArray = right.split("\\s");
+			String[] rightArray = right.split("\\s");
 			for(String t: rightArray) {
 				Wire w = new Wire(t);
 				innerWires.add(w);
@@ -85,7 +85,164 @@ public class Circuit implements Logic{
 			}
 			
 	}
-	
+	public Wire findWire(String name) {
+		for(Wire w: innerWires) {
+			if(w.getName().equals(name)) {
+				return w;
+			}
+		}
+		return null;
+	}
+	public void hookUp(List<Wire> inWires, List<Wire> outWires) {
+		if(inWires.size()== inputs.size() && outWires.size()==outputs.size()) {
+			for(int i=0; i<inputs.size();i++) {
+				inputs.get(i).setIn(inWires.get(i));
+			}
+			for(int i=0; i<outputs.size();i++) {
+				outputs.get(i).setOut(outWires.get(i));
+			}
+		}
+		else throw new ExceptionLogicParameters(true,inputs.size(),inWires.size());
+	}
+	public void parseComponentLine(String line) throws IOException{
+		Scanner scnr = new Scanner(line);
+		String type = scnr.next();
 		
+		List<Wire> inWires = new ArrayList<Wire>();
+		List<Wire> outWires = new ArrayList<Wire>();
+		
+		//Lets make Wires
+		String newWire = scnr.nextLine().trim();
+		String left = "";
+		String right = "";
+		
+		String[] stringArray = newWire.split("\\->");
+		left = stringArray[0].trim();
+		right = stringArray[1].trim();
+		//left
+		String[] leftArray = left.split("\\s");
+		for(String t: leftArray) {
+			Wire w = new Wire(t);
+			inWires.add(w);
+		}
+		
+		String[] rightArray = right.split("\\s");
+		for(String t: rightArray) {
+			Wire w = new Wire(t);
+			outWires.add(w);
+		}
+		
+		if(inWires.size()==0) throw new ExceptionLogicParameters(true,1,0);
+		if(outWires.size()==0) throw new ExceptionLogicParameters(true,1,0);
+		
+		//re=use any known wire
+		for(int i=0; i<inWires.size();i++) {
+			if( findWire(inWires.get(i).getName()) != null) {
+				inWires.set(i, findWire(inWires.get(i).getName()));
+			}
+			else {
+				innerWires.add(inWires.get(i));
+			}
+		}
+		//subcircuit
+		if( importables.contains(type)) {
+			Circuit newObject = new Circuit(type);
+			newObject.hookUp(inWires, outWires);
+			this.components.add(newObject);
+		}
+		else {
+			if(type.equals("NOT")) {
+				if(inWires.size()==1) {
+					components.add(new GateNot(inWires.get(0), outWires.get(0)));
+				}	
+			}
+			else if(type.equals("AND")) {
+				components.add(new GateAnd(inWires, outWires.get(0)));
+			}
+			else if(type.equals("NAND")) {
+				components.add(new GateNand(inWires, outWires.get(0)));
+			}
+			else if(type.equals("OR")) {
+				components.add(new GateOr(inWires, outWires.get(0)));
+			}
+			else if(type.equals("XOR")) {
+				components.add(new GateXor(inWires, outWires.get(0)));
+			}
+			else if(type.equals("NOR")) {
+				components.add(new GateNor(inWires, outWires.get(0)));
+			}
+			
+			else {
+				throw new ExceptionLogicParameters(true,1,inWires.size());
+			}
+		}
+		
+	
+	}
+	
+	@Override
+	public void feed(List<Signal> inputs2) {
+		if( inputs2.size() == inputs.size()) {
+			for(int i=0;i<inputs.size();i++) {
+				inputs.get(i).getIn().setSignal(inputs2.get(i));
+			}
+		}
+		else {
+			throw new ExceptionLogicParameters(true,inputs.size(), inputs2.size());
+		}
+	}
+	
+	@Override
+	public void feed(String signalStr) {
+		List<Signal> sigList = Signal.fromString(signalStr);
+		feed(sigList);
+	}
+	@Override
+	public boolean propagate() {
+		boolean flag = false;
+		List<Signal> f = read();
+		for(Contact c :inputs) {
+			c.getOut().setSignal(c.getIn().getSignal());
+		}
+		for(Logic component:components) {
+			component.propagate();
+		}
+		for(Contact cOut:outputs) {
+			if(cOut.getOut().getSignal() != cOut.getIn().getSignal()) {
+				cOut.getOut().setSignal(cOut.getIn().getSignal());
+			}
+		}
+		List<Signal> s = read();
+		for(int i = 0; i<f.size();i++) {
+			if(!f.get(i).equals(s.get(i))) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+	
+	@Override
+	public List<Signal> read() {
+		List<Signal> list = new ArrayList<Signal>();
+		for(Contact sig: outputs) {
+			list.add(sig.getOut().getSignal());
+		}
+		return list;
+	}
+	
+	@Override
+	public List<Signal> inspect(List<Signal> inputs) {
+		feed(inputs);
+		propagate();
+		return read();
+
+	}
+	@Override
+	public String inspect(String inputs) {
+		feed(inputs);
+		propagate();
+		return read().toString();
+	}
+	//Getters and Setters
 	
 }
