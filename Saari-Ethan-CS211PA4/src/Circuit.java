@@ -145,12 +145,12 @@ public class Circuit implements Logic{
 				innerWires.add(inWires.get(i));
 			}
 		}
-		for(int i=0; i<inWires.size();i++) {
-			if(findWire(outWires.get(i).getName()) != null) {
-				outWires.set(i, findWire(outWires.get(i).getName()));
+		for(int j=0; j<inWires.size();j++) {
+			if(findWire(outWires.get(j).getName()) != null) {
+				outWires.set(j, findWire(outWires.get(j).getName()));
 			}
 			else {
-				innerWires.add(outWires.get(i));
+				innerWires.add(outWires.get(j));
 			}
 		}
 		//subcircuit
