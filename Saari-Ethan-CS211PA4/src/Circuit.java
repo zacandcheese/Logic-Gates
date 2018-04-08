@@ -27,14 +27,12 @@ public class Circuit implements Logic{
 		while(scnr.hasNextLine()) {
 			String var = scnr.nextLine();
 			if(!var.equals("")){
-				System.out.println("line 28:"+ var);
 				doc.add(var);
 			}
 		}
 		//Check for imports
 		String[] firstLine = doc.get(0).split("\\s");
 		//If True parse it
-		System.out.print(doc.get(1));
 		if(firstLine[0].equals("IMPORT")) {
 			parseImportLine(doc.get(0));
 			parseContactsLine(doc.get(1));

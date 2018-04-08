@@ -20,11 +20,11 @@ public class GateOr extends Gate{
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.HI) {
 				flag = true;
-				break;
+				
 			}
 			else if(w.getSignal() == Signal.X) {
 				xFlag = true;
-				break;
+				
 			}
 			else continue;
 		}
