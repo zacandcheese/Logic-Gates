@@ -1,6 +1,6 @@
 /CircuitTests.class
+/ContactTests.class
+/GateTests$GateThing.class
+/GateTests.class
 /SignalTests.class
 /WireTests.class
-/GateTests.class
-/GateTests$GateThing.class
-/ContactTests.class
