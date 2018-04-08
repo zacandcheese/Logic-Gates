@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class GateAnd extends Gate{
 	
 	public GateAnd(List<Wire> inputs, Wire output) {
-		super("AND", inputs,output);
+		super("AND", inputs, output);
 	}
 	// Helper method to create an ArrayList of one thing so that Java's // stupid "super() must be first line" rule can be honored 
 	public static <T> ArrayList<T> one(T x){  
@@ -14,10 +14,15 @@ public class GateAnd extends Gate{
 	@Override public boolean propagate() {
 		boolean value = true;
 		boolean flag = false;
+		boolean xFlag = false;
 		Signal signal = Signal.X;
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.LO) {
 				flag = true;
+				break;
+			}
+			else if(w.getSignal() == Signal.X) {
+				xFlag = true;
 				break;
 			}
 			else continue;
@@ -25,6 +30,9 @@ public class GateAnd extends Gate{
 		if(flag) {
 			signal = Signal.LO;
 			//meaning one was negative
+		}
+		else if(xFlag) {
+			signal = Signal.X;
 		}
 		else signal = Signal.HI;
 		
