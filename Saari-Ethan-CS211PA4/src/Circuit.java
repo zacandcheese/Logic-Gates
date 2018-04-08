@@ -25,11 +25,16 @@ public class Circuit implements Logic{
 		//read through doc
 		List<String> doc = new ArrayList<String>();
 		while(scnr.hasNextLine()) {
-			doc.add(scnr.nextLine());
+			String var = scnr.nextLine();
+			if(!var.equals("")){
+				System.out.println("line 28:"+ var);
+				doc.add(var);
+			}
 		}
 		//Check for imports
 		String[] firstLine = doc.get(0).split("\\s");
 		//If True parse it
+		System.out.print(doc.get(1));
 		if(firstLine[0].equals("IMPORT")) {
 			parseImportLine(doc.get(0));
 			parseContactsLine(doc.get(1));
@@ -42,7 +47,9 @@ public class Circuit implements Logic{
 			importables = new ArrayList<String>(0);
 			parseContactsLine(doc.get(0));
 			for(int i = 1; i<doc.size(); i++) {
-				parseComponentLine(doc.get(i));
+				if (doc.get(i) != "") {
+					parseComponentLine(doc.get(i));
+				}
 			}
 		}
 	}
@@ -145,7 +152,7 @@ public class Circuit implements Logic{
 				innerWires.add(inWires.get(i));
 			}
 		}
-		for(int j=0; j<inWires.size();j++) {
+		for(int j=0; j<outWires.size();j++) {
 			if(findWire(outWires.get(j).getName()) != null) {
 				outWires.set(j, findWire(outWires.get(j).getName()));
 			}
@@ -155,6 +162,7 @@ public class Circuit implements Logic{
 		}
 		//subcircuit
 		if( importables.contains(type)) {
+			System.out.println("\nThis is type "+type);
 			Circuit newObject = new Circuit(type);
 			newObject.hookUp(inWires, outWires);
 			this.components.add(newObject);
