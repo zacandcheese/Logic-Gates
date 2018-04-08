@@ -8,5 +8,15 @@
 /samples/
 =======
 /ExceptionTests.class
+<<<<<<< HEAD
+/FeedbackCircuitTests.class
+/OverallTests.class
+/PA4Tests.class
+/P4Tests.class
+=======
 >>>>>>> 5680e392930d0eabcedd4dc0a8c922cdf7e52b8c
+<<<<<<< HEAD
 /GateSim.class
+=======
+>>>>>>> ecd6c51195d5b5d320e6ae965aaa561acca850fc
+>>>>>>> 5f2e6304d17e47a2de4f0fa8220da7e5a31525df
