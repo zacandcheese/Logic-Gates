@@ -30,7 +30,7 @@ public class Contact implements Logic {
 	@Override public boolean equals(Object o) {
 		if(this.in.equals(((Contact) o).getIn())) {
 			if(this.out.equals(((Contact) o).getOut())) {
-				if(this.inbound == ((Contact) o).isInbound()) {
+				if(this.inbound == ((Contact) o).getInbound()) {
 					return true;
 				}
 			}
@@ -39,38 +39,30 @@ public class Contact implements Logic {
 	}
 	
 	@Override
-	public void feed(List<Signal> inSignals) {
-		// TODO Auto-generated method stub
-		
+	public void feed(List<Signal> inSignals) {		
 	}
 
 	@Override
-	public void feed(String inSignals) {
-		// TODO Auto-generated method stub
-		
+	public void feed(String inSignals) {		
 	}
 
 	@Override
 	public boolean propagate() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List<Signal> read() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Signal> inspect(List<Signal> inputs) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String inspect(String inputs) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -92,7 +84,7 @@ public class Contact implements Logic {
 		this.out = out;
 	}
 	//Gets the inbound
-	public boolean isInbound() {
+	public boolean getInbound() {
 		return inbound;
 	}
 	//Sets the inbound
