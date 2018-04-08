@@ -15,17 +15,23 @@ public class GateNor extends Gate{
 	@Override public boolean propagate() {
 		boolean value = true;
 		boolean flag = false;
+		boolean xFlag = false;
 		Signal signal = Signal.X;
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.HI) {
 				flag = true;
-				break;
 			}
-			else continue;
+			else if(w.getSignal() == Signal.X) {
+				xFlag = true;
+			}
+			else;
 		}
 		if(flag) {
 			signal = Signal.LO;
 			//meaning one was negative
+		}
+		else if(xFlag) {
+			signal = Signal.X;
 		}
 		else signal = Signal.HI;
 		

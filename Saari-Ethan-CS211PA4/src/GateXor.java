@@ -14,19 +14,25 @@ public class GateXor extends Gate{
 	//HI if exactly one input is high; LO otherwise
 	@Override public boolean propagate() {
 		boolean value = true;
-		boolean flag = false;
 		int counter = 0;
+		int xCounter = 0;
+		boolean xFlag = false;
 		Signal signal = Signal.X;
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.HI) {
-				flag = true;
 				counter++;
+			}
+			else if(w.getSignal() == Signal.X){
+				xFlag = true;
 			}
 			else continue;
 		}
-		if(flag && counter==1) {
+		if(counter == 1 && xFlag == false) {
 			signal = Signal.HI;
 			//meaning one was negative
+		}
+		else if(xFlag) {
+			signal = Signal.X;
 		}
 		else signal = Signal.LO;
 		
