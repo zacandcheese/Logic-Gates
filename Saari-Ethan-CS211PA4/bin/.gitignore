@@ -4,8 +4,15 @@
 /GateTests.class
 /SignalTests.class
 /WireTests.class
+<<<<<<< HEAD
+/samples/
+=======
 /ExceptionTests.class
+<<<<<<< HEAD
 /FeedbackCircuitTests.class
 /OverallTests.class
 /PA4Tests.class
 /P4Tests.class
+=======
+>>>>>>> 5680e392930d0eabcedd4dc0a8c922cdf7e52b8c
+>>>>>>> ecd6c51195d5b5d320e6ae965aaa561acca850fc
