@@ -129,21 +129,12 @@ public class Circuit implements Logic{
 		String[] stringArray = newWire.split("\\->");
 		left = stringArray[0].trim();
 		right = stringArray[1].trim();
-		//left
-		String[] leftArray = left.split("\\s");
-		for(String t: leftArray) {
-			Wire w = new Wire(t);
-			inWires.add(w);
-		}
 		
-		String[] rightArray = right.split("\\s");
-		for(String t: rightArray) {
-			Wire w = new Wire(t);
-			outWires.add(w);
-		}
+		inWires = parseString(left);
+		outWires = parseString(right);
 		
 		if(inWires.size()==0) throw new ExceptionLogicParameters(true,1,0);
-		if(outWires.size()==0) throw new ExceptionLogicParameters(true,1,0);
+		if(outWires.size()==0) throw new ExceptionLogicParameters(false,1,0);
 		
 		//re=use any known wire
 		for(int i=0; i<inWires.size();i++) {
@@ -152,6 +143,14 @@ public class Circuit implements Logic{
 			}
 			else {
 				innerWires.add(inWires.get(i));
+			}
+		}
+		for(int i=0; i<inWires.size();i++) {
+			if(findWire(outWires.get(i).getName()) != null) {
+				outWires.set(i, findWire(outWires.get(i).getName()));
+			}
+			else {
+				innerWires.add(outWires.get(i));
 			}
 		}
 		//subcircuit
@@ -164,7 +163,10 @@ public class Circuit implements Logic{
 			if(type.equals("NOT")) {
 				if(inWires.size()==1) {
 					components.add(new GateNot(inWires.get(0), outWires.get(0)));
-				}	
+				}
+				else {
+					throw new ExceptionLogicParameters(true,1,inWires.size());
+				}
 			}
 			else if(type.equals("AND")) {
 				components.add(new GateAnd(inWires, outWires.get(0)));
@@ -181,13 +183,7 @@ public class Circuit implements Logic{
 			else if(type.equals("NOR")) {
 				components.add(new GateNor(inWires, outWires.get(0)));
 			}
-			
-			else {
-				throw new ExceptionLogicParameters(true,1,inWires.size());
-			}
 		}
-		
-	
 	}
 	
 	@Override
