@@ -85,6 +85,16 @@ public class Circuit implements Logic{
 			}
 			
 	}
+	public List<Wire> parseString(String s){
+		List<Wire> w = new ArrayList<Wire>();
+			if (s.length() > 0){
+				String[] stringArray = s.split("\\s");
+				for (String t : stringArray){
+					w.add(new Wire(t));
+				}
+		    }
+			return w;
+	}
 	public Wire findWire(String name) {
 		for(Wire w: innerWires) {
 			if(w.getName().equals(name)) {
@@ -229,7 +239,24 @@ public class Circuit implements Logic{
 		}
 		return list;
 	}
-	
+	@Override public String toString(){
+		StringBuilder stringRepr = new StringBuilder();
+		stringRepr.append(name+" : "+inputs+" -> "+outputs+"\n");
+	    for (Logic comp : components){
+	    	stringRepr.append(indent(comp.toString()));
+	    }
+	    return stringRepr.toString();
+	}
+	public static String indent(String s){
+		String indented = "";
+	    String stuff = "";
+	    Scanner str = new Scanner(s);
+	    while (str.hasNextLine()){
+	    	stuff = str.nextLine();
+	    	indented += "  " + stuff + "\n";
+	    }
+	    return indented;
+	}
 	@Override
 	public List<Signal> inspect(List<Signal> inputs) {
 		feed(inputs);

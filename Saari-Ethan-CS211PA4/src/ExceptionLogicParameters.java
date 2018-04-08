@@ -16,20 +16,20 @@ public class ExceptionLogicParameters extends RuntimeException{
 	}
 //Getters and Setters
 	//Get the inputsRelated
-	public boolean isInputsRelated() {
+	public boolean getInputsRelated() {
 		return inputsRelated;
 	}
 	//Set the inputsRelated
 	public void setInputsRelated(boolean inputsRelated) {
 		this.inputsRelated = inputsRelated;
 	}
-	public int expected() {
+	public int getExpected() {
 		return expected;
 	}
 	public void setExpected(int expected) {
 		this.expected = expected;
 	}
-	public int found() {
+	public int getFound() {
 		return found;
 	}
 	public void setFound(int found) {
