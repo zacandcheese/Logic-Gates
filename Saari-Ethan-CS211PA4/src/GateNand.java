@@ -14,21 +14,28 @@ public class GateNand extends Gate{
 	//Lo if all inputs are high; HI otherwise
 	@Override public boolean propagate() {
 		boolean value = true;
+		boolean xFlag = false;
 		boolean flag = false;
-		Signal signal = Signal.X;
+		Signal signal = Signal.HI;
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.LO) {
 				flag = true;
-				break;
 			}
-			else continue;
+			else if(w.getSignal() == Signal.X) {
+				xFlag = true;
+			}
+			else;
 		}
 		if(flag) {
 			signal = Signal.HI;
 			//flipped
 		}
-		else signal = Signal.LO;
-		
+		else if(xFlag) {
+			signal = Signal.X;
+		}
+		else {
+			signal = Signal.LO;
+		}
 		//Checks to see if changed signal
 		if (getOutput().getSignal().equals(signal)) {
 			value = false;

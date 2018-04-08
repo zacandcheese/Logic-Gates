@@ -19,13 +19,11 @@ public class GateAnd extends Gate{
 		for(Wire w: getInputs()) {
 			if(w.getSignal() == Signal.LO) {
 				flag = true;
-				break;
 			}
 			else if(w.getSignal() == Signal.X) {
 				xFlag = true;
-				break;
 			}
-			else continue;
+			else;
 		}
 		if(flag) {
 			signal = Signal.LO;
