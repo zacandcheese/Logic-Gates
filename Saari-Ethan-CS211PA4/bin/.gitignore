@@ -1,23 +1,30 @@
+/.metadata/
+/Group Information and Error Log
+/samples/
+/Circuit.class
 /CircuitTests.class
+/Contact.class
 /ContactTests.class
+/ExceptionLogicMalformedSignal.class
+/ExceptionLogicParameters.class
+/ExceptionTests.class
+/FeedbackCircuit.class
+/FeedbackCircuitTests.class
+/Gate.class
+/GateAnd.class
+/GateNand.class
+/GateNor.class
+/GateNot.class
+/GateOr.class
+/GateSim.class
 /GateTests$GateThing.class
 /GateTests.class
-/SignalTests.class
-/WireTests.class
-<<<<<<< HEAD
-/samples/
-=======
-/ExceptionTests.class
-<<<<<<< HEAD
-/FeedbackCircuitTests.class
+/GateXor.class
+/Logic.class
+/LogicGates.class
 /OverallTests.class
-/PA4Tests.class
 /P4Tests.class
-=======
->>>>>>> 5680e392930d0eabcedd4dc0a8c922cdf7e52b8c
-<<<<<<< HEAD
-/GateSim.class
-=======
->>>>>>> ecd6c51195d5b5d320e6ae965aaa561acca850fc
->>>>>>> 5f2e6304d17e47a2de4f0fa8220da7e5a31525df
-/Group Information and Error Log
+/Signal.class
+/SignalTests.class
+/Wire.class
+/WireTests.class
