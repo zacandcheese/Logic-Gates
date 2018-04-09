@@ -1,7 +1,3 @@
-/.metadata/
-/Group Information and Error Log
-/samples/
-/Circuit.class
 /CircuitTests.class
 /Contact.class
 /ContactTests.class
@@ -21,7 +17,6 @@
 /GateTests.class
 /GateXor.class
 /Logic.class
-/LogicGates.class
 /OverallTests.class
 /P4Tests.class
 /Signal.class
