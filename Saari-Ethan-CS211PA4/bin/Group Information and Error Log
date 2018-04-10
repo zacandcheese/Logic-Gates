@@ -12,14 +12,8 @@ What Ethan Saari Did:
 -Wire (2.2)
 
 What Both Did
--Fixed All Classes to make the Tests Work (Editing)
+-Fixed All Classes to make the Tests Work
 
 
 Errors:
-On Ethan's computer, CircuitTests.java returned
-	one failure, circuit_getCircuitScanner, which
-	was not returned on Zach's computer. This was 
-	assumed to be a glitch on Ethan's computer, as
-	the code should have been fully working, and 
-	screenshots of the tests from Zach's computer
-	have been provided.
+-None

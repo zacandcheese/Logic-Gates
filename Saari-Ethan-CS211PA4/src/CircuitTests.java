@@ -199,7 +199,7 @@ public class CircuitTests {
   
   @Test (timeout=3000) public void circuit_getCircuitScanner() throws IOException {
     Scanner sc = vanillaCircuit.getCircuitScanner("and");
-    String expected = "A B -> out\n\nAND A B -> out";
+    String expected = "A B -> out"+(char)(13)+"\n"+(char)(13)+"\nAND A B -> out";
     String found = sc.useDelimiter("\\Z").next(); // note, this removes the last newline.
     assertEquals(expected, found);
   }
