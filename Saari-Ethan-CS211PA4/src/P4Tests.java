@@ -26,7 +26,7 @@ public class P4Tests {
                                     ,"GateTests"
                                     ,"CircuitTests"
                                     ,"OverallTests"
-                                    ,"FeedbackCircuitTests"  // HONORS STUDENTS: include these tests when you attempt the honors problem.
+                                    //,"FeedbackCircuitTests"  // HONORS STUDENTS: include these tests when you attempt the honors problem.
                                    );
   }
 
