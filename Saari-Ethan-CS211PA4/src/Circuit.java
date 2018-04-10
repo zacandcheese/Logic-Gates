@@ -160,7 +160,6 @@ public class Circuit implements Logic{
 		}
 		//subcircuit
 		if( importables.contains(type)) {
-			System.out.println("\nThis is type "+type);
 			Circuit newObject = new Circuit(type);
 			newObject.hookUp(inWires, outWires);
 			this.components.add(newObject);
