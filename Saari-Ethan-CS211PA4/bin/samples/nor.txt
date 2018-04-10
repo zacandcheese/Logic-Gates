@@ -1,3 +1,0 @@
-A B -> out
-
-NOR A B -> out

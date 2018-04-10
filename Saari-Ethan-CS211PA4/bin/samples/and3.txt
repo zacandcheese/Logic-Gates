@@ -1,6 +1,0 @@
-IMPORT andy
-
-A B C -> out
-
-andy A B -> temp
-andy temp C -> out

@@ -1,4 +1,0 @@
-A B -> out
-
-OR A temp -> out
-AND B out -> temp
